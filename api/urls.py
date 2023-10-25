@@ -14,7 +14,5 @@ urlpatterns = [
    path("comment/<int:pk>/", CommentDetailAPIView.as_view(), name="comment_detail"),
    path("information/", InformationListAPIView.as_view(), name="information"),
    path("information/<int:pk>/", InformationDetailAPIView.as_view(), name="information_detail"),
-   path("hotelcost/", HotelInCityCostListAPIView.as_view(), name="HotelListAPIView"),
-   path("hotelcost/<int:pk>/", HotelInCityCostDetailAPIView.as_view(), name="HotelListAPIView"),
-
+  
 ]

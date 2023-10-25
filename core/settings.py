@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_filters',
     'rest_framework_swagger',
+    'api_view'
 
 ]
 
