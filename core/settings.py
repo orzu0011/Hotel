@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# AUTH_USER_MODEL = "authors.User"
+
 
 # Application definition
 SITE_ID = 1
@@ -40,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'country',
+    'experience',
+    # 'authors',
+    'User',
     'rest_framework',
     'drf_yasg',
     'rest_framework.authtoken',
@@ -51,8 +56,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_filters',
     'rest_framework_swagger',
-    'api_view'
-
+    'cars',
+    'phone_field',
 ]
 
 REST_FRAMEWORK = {
@@ -117,9 +122,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite10',
     }
 }
+DJANGORESIZED_DEFAULT_KEEP_META = True
+DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
+DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
+DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
 
 # Password validation
@@ -140,13 +149,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'User.CustomUser'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 

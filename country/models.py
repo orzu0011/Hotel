@@ -1,9 +1,8 @@
 from django.db import models
-from django.db.models import IntegerField, Model
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
-
+from django.db.models import fields
 
 class Country(models.Model):
     city_name = models.CharField(max_length=255)
@@ -35,8 +34,8 @@ class HotelInCity(models.Model):
         return self.title
 
 
-class CoolModelBro(Model):
-    limited_integer_field = IntegerField(
+class CoolModelBro(models.Model):
+    limited_integer_field = models.IntegerField(
         default=1,
         validators=[
             MaxValueValidator(100),
@@ -44,6 +43,7 @@ class CoolModelBro(Model):
         ]
     )
 
+from django_resized import ResizedImageField
 
 class Author(models.Model):
     full_name = models.CharField(max_length=255)
@@ -52,6 +52,9 @@ class Author(models.Model):
     joined = models.CharField(max_length=255)
     response = models.ForeignKey(CoolModelBro, on_delete=models.CASCADE)
     response_time = models.CharField(max_length=100)
+    avatar = ResizedImageField(verbose_name="Avatar", size=[400, 400], crop=('middle', 'center'), default='qonday/images.jpeg', null=True, blank=True, upload_to='img/avatars/')
+    
+    
     
     class Meta:
         verbose_name = 'Author'
@@ -92,7 +95,7 @@ class Information(models.Model):
 class HotelInCityCost(models.Model):
     # hotel = models.ForeignKey(HotelInCity, on_delete=models.CASCADE)
     room_price_per_day = models.IntegerField(null=True)
-    room_check_in = models.DateField(default=datetime.now)
+    room_check_in = models.DateField(auto_now_add=True)
     day = models.IntegerField()
     service_charge = models.IntegerField(default=0)
     total_cost = models.DecimalField(max_digits=18, decimal_places=2, default=0)

@@ -55,7 +55,8 @@ class HotelInCitySerializer(ModelSerializer):
         
 class CountrySerializer(ModelSerializer):
     hotel_obj = HotelInCitySerializer(source='hotelincity_set', many=True, read_only=True)
-    picture = 
+    picture = Base64ImageField()
     class Meta:
         model = Country
         fields = "id","city_name", "properties", 'picture' ,"hotel_obj"
+
